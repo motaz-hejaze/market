@@ -25,7 +25,7 @@ SECRET_KEY = 'b0je3k-7#psej@6oyo$!a@oe==8t9!2vdt$w1$ir+35oy9+5f^'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['example.com','46.101.151.126']
+ALLOWED_HOSTS = ['example.com','46.101.151.126','127.0.0.1']
 
 
 # Application definition
@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -70,13 +71,14 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'market.wsgi.application'
 
+BOOTSTRAP_ADMIN_SIDEBAR_MENU = False
 
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
 DATABASES = {
 
-    'default': {
+    'default1': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'market',
         'USER': 'hejaze',
@@ -84,7 +86,7 @@ DATABASES = {
         'HOST': 'localhost',
         'PORT': '',
     },
-    'not-default': {
+    'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
