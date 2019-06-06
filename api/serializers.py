@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Category , Product , Image , Information
+from .models import Category , Product , Information
 
 
 class CategorySerializer(serializers.Serializer):
@@ -27,7 +27,9 @@ class ProductSerializer(serializers.Serializer):
 	category_id = serializers.IntegerField()
 	price = serializers.DecimalField(default=0.00 , decimal_places=2 , max_digits=8)
 	number_in_stocks = serializers.IntegerField(default=0)
-
+	main_image = serializers.ImageField()
+	second_image = serializers.ImageField()
+	third_image = serializers.ImageField()
 
 	def create(self,validated_data):
 		return Product.objects.create(**validated_data)
@@ -39,12 +41,15 @@ class ProductSerializer(serializers.Serializer):
 		instance.category_id = validated_data.get('category_id', instance.category_id)
 		instance.price = validated_data.get('price', instance.price)
 		instance.number_in_stocks = validated_data.get('number_in_stocks', instance.number_in_stocks)
+		instance.main_image = validated_data.get('path' , instance.path)
+		instance.second_image = validated_data.get('path' , instance.path)
+		instance.third_image = validated_data.get('path' , instance.path)
 
 		instance.save()
 
 		return instance
 
-
+"""
 class ImageSerializer(serializers.Serializer):
 	id = serializers.ReadOnlyField()
 	name = serializers.CharField(max_length=60)
@@ -65,7 +70,7 @@ class ImageSerializer(serializers.Serializer):
 		instance.save()
 
 		return instance
-
+"""
 
 class InfoSerializer(serializers.Serializer):
 	id = serializers.ReadOnlyField()
